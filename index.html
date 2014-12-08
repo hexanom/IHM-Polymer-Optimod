@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Optimod Lyon</title>
+    <link rel="import" href="bower_components/font-roboto/roboto.html">
+    <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+    <link rel="import" href="bower_components/paper-shadow/paper-shadow.html">
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
+    <style type="text/css">
+      body {
+        margin: 0; padding: 0;
+        font-family: RobotoDraft, sans-serif;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-touch-callout: none;
+      }
+      core-toolbar {
+        background-color: #F44336;
+        color: white;
+      }
+      .card {
+        margin: 20px;
+        padding: 10px;
+        display: inline-block;
+      }
+      a {
+        color: black;
+      }
+    </style>
+  </head>
+  <body unresolved>
+    <core-header-panel shadow>
+      <core-toolbar>
+        <div>Optimod Lyon</div>
+      </core-toolbar>
+      <div id="frame">
+        <paper-shadow z="2" class="card">
+          <a href="superviseur.html">
+            <paper-button>Interface Superviseur</paper-button>
+          </a>
+        </paper-shadow>
+        <paper-shadow z="2" class="card">
+          <a href="livreur.html">
+            <paper-button>Interface Livreur</paper-button>
+          </a>
+        </paper-shadow>
+      </div>
+    </core-header-panel>
+  </body>
+</html>
