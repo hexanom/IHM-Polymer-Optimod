@@ -4,8 +4,23 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
   <title>Optimod</title>
+
+  <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+  <link rel="stylesheet" href="base.css" type="text/css" charset="utf-8">
+  <link rel="import" href="bower_components/font-roboto/roboto.html">
+  <link rel="import" href="bower_components/paper-button/paper-button.html">
+  <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+  <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
 </head>
-<body>
-<h1>Hello Optimod</h1>
+<body unresolved>
+<core-header-panel shadow>
+  <core-toolbar>
+    <span flex>Optimod Lyon</span>
+    <paper-icon-button icon="close" onclick="javascript:window.close()"></paper-icon-button>
+  </core-toolbar>
+  <div id="frame">
+    Hello world
+  </div>
+</core-header-panel>
 </body>
 </html>
