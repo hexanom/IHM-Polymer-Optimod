@@ -8,6 +8,7 @@
 <link rel="import" href="../../bower_components/core-icon/core-icon.html">
 <link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import"  href="../../bower_components/google-map/google-map.html">
 
 <polymer-element name="app-supervisor">
   <template>
@@ -35,8 +36,8 @@
         <core-menu>
           <template if="{{mode == 0}}" repeat="{{deliveries}}">
              <core-submenu label="{{tw}}" icon="alarm">
-               <template repeat="{{del in dels}}">
-                 <core-item icon="settings" label="{{del}}"></core-item>
+               <template repeat="{{dels}}">
+                 <core-item icon="account-circle" label="{{name}}" selected="{{sel}}"></core-item>
                </template>
             </core-submenu>
           </template>
@@ -45,7 +46,16 @@
       <div tool>
         Supervision
       </div>
-      <div class="content">Content goes here...</div>
+      <div class="content">
+        <google-map fit latitude="45.7600" longitude="4.8400" zoom="13">
+          <template if="{{mode == 0}}" repeat="{{deliveries}}">
+             <template repeat="{{dels}}">
+               <google-map-marker latitude="{{lat}}" longitude="{{long}}">
+               </google-map-marker>
+             </template>
+          </template>
+        </google-map>
+      </div>
     </core-scaffold>
   </template>
   <script>
@@ -55,22 +65,40 @@
           {
             tw: "08:00 - 10:00",
             dels: [
-              "LATAPY Remi",
-              "RICARD Robin"
+              {
+                name: "LATAPY Remi",
+                lat: "45.770828", long: "4.869021"
+              },
+              {
+                name: "RICARD Robin",
+                lat: "45.770828", long: "4.869021"
+              }
             ],
           },
           {
             tw: "10:00 - 12:00",
             dels: [
-              "CISSE Modou",
-              "OGER Edouard"
+              {
+                name: "CISSE Modou",
+                lat: "45.770828", long: "4.869021"
+              },
+              {
+                name: "OGER Edouard",
+                lat: "45.770828", long: "4.869021"
+              }
             ],
           },
           {
             tw: "14:00 - 16:00",
             dels: [
-              "BRUNAT Romain",
-              "SIVANANDAN Bruno"
+              {
+                name: "BRUNAT Romain",
+                lat: "45.779070", long: "4.874000"
+              },
+              {
+                name: "SIVANANDAN Bruno",
+                lat: "45.774828", long: "4.865121"
+              }
             ],
           },
         ],
