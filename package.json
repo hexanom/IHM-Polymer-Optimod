@@ -1,0 +1,37 @@
+{
+  "name": "IHM-Polymer-Optimod",
+  "version": "1.0.0",
+  "description": "IHM-Polymer-Optimod",
+  "main": "index.html",
+  "window": {
+    "title": "Optimod",
+    "toolbar": false,
+    "frame": false,
+    "resizable": true,
+    "position": "center",
+    "width": 1200,
+    "height": 800
+  },
+  "scripts": {
+    "run": "nwbuild --run ./",
+    "win": "nwbuild -p win ./",
+    "linux": "nwbuild -p linux32,linux64 ./",
+    "osx": "nwbuild -p osx ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hexanom/IHM-Polymer-Optimod.git"
+  },
+  "author": "Robin Ricard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hexanom/IHM-Polymer-Optimod/issues"
+  },
+  "homepage": "https://github.com/hexanom/IHM-Polymer-Optimod",
+  "dependencies": {
+    "gulp": "^3.8.10",
+    "gulp-bower": "0.0.7",
+    "gulp-shell": "^0.2.11",
+    "node-webkit-builder": "^1.0.0"
+  }
+}
