@@ -14,3 +14,7 @@ core-toolbar {
 a {
   color: black;
 }
+core-toolbar, *::shadow core-toolbar, *::shadow *::shadow core-toolbar, paper-tabs,  *::shadow paper-tabs{
+  background-color: #E2001A;
+  color: white;
+}
