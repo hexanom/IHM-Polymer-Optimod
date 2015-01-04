@@ -1,14 +1,17 @@
-<link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/core-scaffold/core-scaffold.html">
-<link rel="import" href="../../bower_components/core-header-panel/core-header-panel.html">
-<link rel="import" href="../../bower_components/core-toolbar/core-toolbar.html">
-<link rel="import" href="../../bower_components/core-menu/core-menu.html">
-<link rel="import" href="../../bower_components/core-menu/core-submenu.html">
-<link rel="import" href="../../bower_components/core-item/core-item.html">
-<link rel="import" href="../../bower_components/core-icon/core-icon.html">
-<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
-<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import"  href="../../bower_components/google-map/google-map.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html"/>
+<link rel="import" href="../../bower_components/core-scaffold/core-scaffold.html"/>
+<link rel="import" href="../../bower_components/core-header-panel/core-header-panel.html"/>
+<link rel="import" href="../../bower_components/core-toolbar/core-toolbar.html"/>
+<link rel="import" href="../../bower_components/core-menu/core-menu.html"/>
+<link rel="import" href="../../bower_components/core-menu/core-submenu.html"/>
+<link rel="import" href="../../bower_components/core-item/core-item.html"/>
+<link rel="import" href="../../bower_components/core-icon/core-icon.html"/>
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html"/>
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html"/>
+<link rel="import"  href="../../bower_components/google-map/google-map.html"/>
+<link href="../../bower_components/paper-dialog/paper-dialog.html" rel="import"/>
+<link href="../../bower_components/paper-dialog/paper-action-dialog.html" rel="import"/>
+<link href="../../bower_components/paper-button/paper-button.html" rel="import"/>
 
 <polymer-element name="app-supervisor">
   <template>
@@ -30,22 +33,22 @@
           <paper-icon-button icon="arrow-back" onclick="window.location.href = './index.html'"></paper-icon-button>
           <paper-tabs selected="{{mode}}" fill>
             <paper-tab>
-               <core-icon icon="create"></core-icon>
+              <core-icon icon="create"></core-icon>
             </paper-tab>
             <paper-tab>
-               <core-icon icon="toc"></core-icon>
+              <core-icon icon="toc"></core-icon>
             </paper-tab> 
             <paper-tab>
-               <core-icon icon="visibility"></core-icon>
+              <core-icon icon="visibility"></core-icon>
             </paper-tab>
           </paper-tabs>
         </core-toolbar>
         <core-menu flex>
           <template if="{{mode == 0}}" repeat="{{deliveries}}">
             <core-submenu label="{{tw}}" icon="alarm">
-               <template repeat="{{dels}}">
-                 <core-item icon="account-circle" label="{{name}}" selected="{{sel}}" style="color: {{color}}"></core-item>
-               </template>
+              <template repeat="{{dels}}">
+                <core-item icon="account-circle" label="{{name}}" selected="{{sel}}" style="color: {{color}}"></core-item>
+              </template>
             </core-submenu>
           </template>
           <template if="{{mode == 1}}">
@@ -65,7 +68,38 @@
           </template>
         </core-menu>
         <core-toolbar class="bottom">
-          <div>toolbar</div>
+          <template if="{{mode == 0}}">
+            <paper-icon-button icon="add-circle-outline" on-tap="{{toggleNextDialog}}"></paper-icon-button>
+            <paper-action-dialog heading="Add a new delivery">
+              <p>TODO</p>
+              <paper-button affirmative>Cancel</paper-button>
+              <paper-button affirmative autofocus>Add</paper-button>
+            </paper-action-dialog>
+
+            <paper-icon-button icon="remove-circle-outline" on-tap="{{toggleNextDialog}}"></paper-icon-button>
+            <paper-action-dialog heading="Delete a Delivery">
+              <p>Are you sure you want to delete <strong>CISSE Modou</strong> from the delivery list ?</p>
+              <paper-button affirmative>Cancel</paper-button>
+              <paper-button affirmative autofocus>Delete</paper-button>
+            </paper-action-dialog>
+
+            <paper-icon-button icon="create" on-tap="{{toggleNextDialog}}"></paper-icon-button>
+            <paper-action-dialog heading="Change a delivery">
+              <p>TODO</p>
+              <paper-button affirmative>Cancel</paper-button>
+              <paper-button affirmative autofocus>Change</paper-button>
+            </paper-action-dialog>
+
+            <paper-icon-button icon="get-app" on-tap="{{toggleNextDialog}}"></paper-icon-button>
+            <paper-action-dialog heading="Import a set of deliveries">
+              <p>FS VIEW</p>
+              <paper-button affirmative>Cancel</paper-button>
+              <paper-button affirmative autofocus>Import</paper-button>
+            </paper-action-dialog>
+          </template>
+          <template if="{{mode == 1}}">
+            <paper-icon-button icon="send"></paper-icon-button>
+          </template>
         </core-toolbar>
       </core-header-panel>
       <div tool>
@@ -74,22 +108,22 @@
       <div class="content">
         <google-map fit latitude="45.7600" longitude="4.8400" zoom="13">
           <template if="{{mode == 0}}" repeat="{{deliveries}}">
-             <template repeat="{{dels}}">
-               <google-map-marker latitude="{{lat}}" longitude="{{long}}" icon="http://maps.google.com/mapfiles/ms/icons/{{color}}-dot.png" title="{{name}}">
-                 <p>{{name}}</p>
-               </google-map-marker>
-             </template>
+            <template repeat="{{dels}}">
+              <google-map-marker latitude="{{lat}}" longitude="{{long}}" icon="http://maps.google.com/mapfiles/ms/icons/{{color}}-dot.png" title="{{name}}">
+                <p>{{name}}</p>
+              </google-map-marker>
+            </template>
           </template>
           <template if="{{mode == 1}}">
             <google-map-marker latitude="{{warehouse.lat}}" longitude="{{warehouse.long}}" icon="http://maps.google.com/mapfiles/ms/icons/blue-dot.png" title="{{warehouse.name}}">
               <p>{{warehouse.name}}</p>
             </google-map-marker>
             <template repeat="{{deliveries}}">
-             <template repeat="{{dels}}">
-               <google-map-marker latitude="{{lat}}" longitude="{{long}}" icon="http://maps.google.com/mapfiles/ms/icons/{{lateColor}}-dot.png" title="{{name}}">
-                 <p>{{name}}</p>
-               </google-map-marker>
-             </template>
+              <template repeat="{{dels}}">
+                <google-map-marker latitude="{{lat}}" longitude="{{long}}" icon="http://maps.google.com/mapfiles/ms/icons/{{lateColor}}-dot.png" title="{{name}}">
+                  <p>{{name}}</p>
+                </google-map-marker>
+              </template>
             </template>
           </template>
         </google-map>
@@ -98,6 +132,13 @@
   </template>
   <script>
     Polymer({
+        toggleNextDialog: function(e) {
+          var d = e.target.nextElementSibling;
+          if (!d) {
+            return;
+          }
+          d.toggle();
+        },
         mode: 0,
         warehouse: {
           name: "Dept. Info. INSA Lyon",
@@ -116,34 +157,34 @@
                 before: [ "turn at X" ],
                 after: [ "continue on Y", "take Z" ]
               },
-              {
-                name: "RICARD Robin",
-                lat: "45.770828", long: "4.869021",
-                color: "purple",
-                lateColor: "green",
-                after: [ "u-turn on A", "left on B" ]
-              }
+            {
+              name: "RICARD Robin",
+              lat: "45.770828", long: "4.869021",
+              color: "purple",
+              lateColor: "green",
+              after: [ "u-turn on A", "left on B" ]
+            }
             ],
           },
+        {
+          tw: "10:00 - 12:00",
+          dels: [
+            {
+              name: "CISSE Modou",
+              lat: "45.760828", long: "4.859021",
+              color: "orange",
+              lateColor: "green",
+              after: [ "right on C" ]
+            },
           {
-            tw: "10:00 - 12:00",
-            dels: [
-              {
-                name: "CISSE Modou",
-                lat: "45.760828", long: "4.859021",
-                color: "orange",
-                lateColor: "green",
-                after: [ "right on C" ]
-              },
-              {
-                name: "OGER Edouard",
-                lat: "45.750828", long: "4.849021",
-                color: "orange",
-                lateColor: "green",
-                after: [ "continue on D for 1km", "take E" ]
-              }
+            name: "OGER Edouard",
+            lat: "45.750828", long: "4.849021",
+            color: "orange",
+            lateColor: "green",
+            after: [ "continue on D for 1km", "take E" ]
+          }
             ],
-          },
+        },
           {
             tw: "14:00 - 16:00",
             dels: [
@@ -154,13 +195,13 @@
                 lateColor: "red",
                 after: [ "zigzag in F" ]
               },
-              {
-                name: "SIVANANDAN Bruno",
-                lat: "45.774828", long: "4.865121",
-                color: "green",
-                lateColor: "red",
-                after: [ "jump over the wall" ]
-              }
+            {
+              name: "SIVANANDAN Bruno",
+              lat: "45.774828", long: "4.865121",
+              color: "green",
+              lateColor: "red",
+              after: [ "jump over the wall" ]
+            }
             ],
           },
         ]
