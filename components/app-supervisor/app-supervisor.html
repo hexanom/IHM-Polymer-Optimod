@@ -60,7 +60,8 @@
         <google-map fit latitude="45.7600" longitude="4.8400" zoom="13">
           <template if="{{mode == 0}}" repeat="{{deliveries}}">
              <template repeat="{{dels}}">
-               <google-map-marker latitude="{{lat}}" longitude="{{long}}" icon="http://maps.google.com/mapfiles/ms/icons/{{color}}-dot.png">
+               <google-map-marker latitude="{{lat}}" longitude="{{long}}" icon="http://maps.google.com/mapfiles/ms/icons/{{color}}-dot.png" title="{{name}}">
+                 <p>{{name}}</p>
                </google-map-marker>
              </template>
           </template>
@@ -77,7 +78,7 @@
             dels: [
               {
                 name: "LATAPY Remi",
-                lat: "45.770828", long: "4.869021",
+                lat: "45.760828", long: "4.869021",
                 color: "purple"
               },
               {
@@ -92,12 +93,12 @@
             dels: [
               {
                 name: "CISSE Modou",
-                lat: "45.770828", long: "4.869021",
+                lat: "45.760828", long: "4.859021",
                 color: "orange"
               },
               {
                 name: "OGER Edouard",
-                lat: "45.770828", long: "4.869021",
+                lat: "45.750828", long: "4.849021",
                 color: "orange"
               }
             ],
