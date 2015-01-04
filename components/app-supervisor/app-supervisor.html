@@ -48,6 +48,17 @@
                </template>
             </core-submenu>
           </template>
+          <template if="{{mode == 1}}" repeat="{{deliveries}}">
+            <template repeat="{{dels}}">
+              <template repeat="{{step in before}}">
+                <core-item icon="trending-down" label="{{step}}"></core-item>
+              </template>
+              <core-item icon="account-circle" label="{{name}}" selected="{{sel}}" style="color: {{lateColor}}"></core-item>
+              <template repeat="{{step in after}}">
+                <core-item icon="trending-down" label="{{step}}"></core-item>
+              </template>
+            </template>
+          </template>
         </core-menu>
         <core-toolbar class="bottom">
           <div>toolbar</div>
@@ -61,6 +72,13 @@
           <template if="{{mode == 0}}" repeat="{{deliveries}}">
              <template repeat="{{dels}}">
                <google-map-marker latitude="{{lat}}" longitude="{{long}}" icon="http://maps.google.com/mapfiles/ms/icons/{{color}}-dot.png" title="{{name}}">
+                 <p>{{name}}</p>
+               </google-map-marker>
+             </template>
+          </template>
+          <template if="{{mode == 1}}" repeat="{{deliveries}}">
+             <template repeat="{{dels}}">
+               <google-map-marker latitude="{{lat}}" longitude="{{long}}" icon="http://maps.google.com/mapfiles/ms/icons/{{lateColor}}-dot.png" title="{{name}}">
                  <p>{{name}}</p>
                </google-map-marker>
              </template>
@@ -79,12 +97,17 @@
               {
                 name: "LATAPY Remi",
                 lat: "45.760828", long: "4.869021",
-                color: "purple"
+                color: "purple",
+                lateColor: "green",
+                before: [ "Warehouse", "turn at X" ],
+                after: [ "continue on Y", "take Z" ]
               },
               {
                 name: "RICARD Robin",
                 lat: "45.770828", long: "4.869021",
-                color: "purple"
+                color: "purple",
+                lateColor: "green",
+                after: [ "u-turn on A", "left on B" ]
               }
             ],
           },
@@ -94,12 +117,16 @@
               {
                 name: "CISSE Modou",
                 lat: "45.760828", long: "4.859021",
-                color: "orange"
+                color: "orange",
+                lateColor: "green",
+                after: [ "right on C" ]
               },
               {
                 name: "OGER Edouard",
                 lat: "45.750828", long: "4.849021",
-                color: "orange"
+                color: "orange",
+                lateColor: "green",
+                after: [ "continue on D for 1km", "take E" ]
               }
             ],
           },
@@ -109,12 +136,16 @@
               {
                 name: "BRUNAT Romain",
                 lat: "45.779070", long: "4.874000",
-                color: "green"
+                color: "green",
+                lateColor: "red",
+                after: [ "zigzag in F" ]
               },
               {
                 name: "SIVANANDAN Bruno",
                 lat: "45.774828", long: "4.865121",
-                color: "green"
+                color: "green",
+                lateColor: "red",
+                after: [ "jump over the wall", "Warehouse" ]
               }
             ],
           },
