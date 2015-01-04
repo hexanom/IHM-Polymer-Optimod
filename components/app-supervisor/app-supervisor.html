@@ -42,9 +42,9 @@
         </core-toolbar>
         <core-menu flex>
           <template if="{{mode == 0}}" repeat="{{deliveries}}">
-             <core-submenu label="{{tw}}" icon="alarm">
+            <core-submenu label="{{tw}}" icon="alarm">
                <template repeat="{{dels}}">
-                 <core-item icon="account-circle" label="{{name}}" selected="{{sel}}"></core-item>
+                 <core-item icon="account-circle" label="{{name}}" selected="{{sel}}" style="color: {{color}}"></core-item>
                </template>
             </core-submenu>
           </template>
@@ -60,7 +60,7 @@
         <google-map fit latitude="45.7600" longitude="4.8400" zoom="13">
           <template if="{{mode == 0}}" repeat="{{deliveries}}">
              <template repeat="{{dels}}">
-               <google-map-marker latitude="{{lat}}" longitude="{{long}}">
+               <google-map-marker latitude="{{lat}}" longitude="{{long}}" icon="http://maps.google.com/mapfiles/ms/icons/{{color}}-dot.png">
                </google-map-marker>
              </template>
           </template>
@@ -77,11 +77,13 @@
             dels: [
               {
                 name: "LATAPY Remi",
-                lat: "45.770828", long: "4.869021"
+                lat: "45.770828", long: "4.869021",
+                color: "purple"
               },
               {
                 name: "RICARD Robin",
-                lat: "45.770828", long: "4.869021"
+                lat: "45.770828", long: "4.869021",
+                color: "purple"
               }
             ],
           },
@@ -90,11 +92,13 @@
             dels: [
               {
                 name: "CISSE Modou",
-                lat: "45.770828", long: "4.869021"
+                lat: "45.770828", long: "4.869021",
+                color: "orange"
               },
               {
                 name: "OGER Edouard",
-                lat: "45.770828", long: "4.869021"
+                lat: "45.770828", long: "4.869021",
+                color: "orange"
               }
             ],
           },
@@ -103,11 +107,13 @@
             dels: [
               {
                 name: "BRUNAT Romain",
-                lat: "45.779070", long: "4.874000"
+                lat: "45.779070", long: "4.874000",
+                color: "green"
               },
               {
                 name: "SIVANANDAN Bruno",
-                lat: "45.774828", long: "4.865121"
+                lat: "45.774828", long: "4.865121",
+                color: "green"
               }
             ],
           },
