@@ -48,16 +48,20 @@
                </template>
             </core-submenu>
           </template>
-          <template if="{{mode == 1}}" repeat="{{deliveries}}">
-            <template repeat="{{dels}}">
-              <template repeat="{{step in before}}">
-                <core-item icon="trending-down" label="{{step}}"></core-item>
-              </template>
-              <core-item icon="account-circle" label="{{name}}" selected="{{sel}}" style="color: {{lateColor}}"></core-item>
-              <template repeat="{{step in after}}">
-                <core-item icon="trending-down" label="{{step}}"></core-item>
+          <template if="{{mode == 1}}">
+            <core-item icon="home" label="{{warehouse.name}}" style="color: blue"></core-item>
+            <template repeat="{{deliveries}}">
+              <template repeat="{{dels}}">
+                <template repeat="{{step in before}}">
+                  <core-item icon="trending-down" label="{{step}}"></core-item>
+                </template>
+                <core-item icon="account-circle" label="{{name}}" selected="{{sel}}" style="color: {{lateColor}}"></core-item>
+                <template repeat="{{step in after}}">
+                  <core-item icon="trending-down" label="{{step}}"></core-item>
+                </template>
               </template>
             </template>
+            <core-item icon="home" label="{{warehouse.name}}" style="color: blue"></core-item>
           </template>
         </core-menu>
         <core-toolbar class="bottom">
@@ -76,12 +80,17 @@
                </google-map-marker>
              </template>
           </template>
-          <template if="{{mode == 1}}" repeat="{{deliveries}}">
+          <template if="{{mode == 1}}">
+            <google-map-marker latitude="{{warehouse.lat}}" longitude="{{warehouse.long}}" icon="http://maps.google.com/mapfiles/ms/icons/blue-dot.png" title="{{warehouse.name}}">
+              <p>{{warehouse.name}}</p>
+            </google-map-marker>
+            <template repeat="{{deliveries}}">
              <template repeat="{{dels}}">
                <google-map-marker latitude="{{lat}}" longitude="{{long}}" icon="http://maps.google.com/mapfiles/ms/icons/{{lateColor}}-dot.png" title="{{name}}">
                  <p>{{name}}</p>
                </google-map-marker>
              </template>
+            </template>
           </template>
         </google-map>
       </div>
@@ -90,6 +99,11 @@
   <script>
     Polymer({
         mode: 0,
+        warehouse: {
+          name: "Dept. Info. INSA Lyon",
+          lat: "45.781582",
+          long: "4.872940"
+        },
         deliveries: [
           {
             tw: "08:00 - 10:00",
@@ -99,7 +113,7 @@
                 lat: "45.760828", long: "4.869021",
                 color: "purple",
                 lateColor: "green",
-                before: [ "Warehouse", "turn at X" ],
+                before: [ "turn at X" ],
                 after: [ "continue on Y", "take Z" ]
               },
               {
@@ -145,12 +159,11 @@
                 lat: "45.774828", long: "4.865121",
                 color: "green",
                 lateColor: "red",
-                after: [ "jump over the wall", "Warehouse" ]
+                after: [ "jump over the wall" ]
               }
             ],
           },
-        ],
-        roadmap: []
+        ]
     });
   </script>
 </polymer-element>
