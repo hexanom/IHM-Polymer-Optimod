@@ -16,6 +16,13 @@
       paper-tabs {
         height: 64px;
       }
+      .bottom {
+        position: fixed;
+        z-index: 1000;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
     </style>
     <core-scaffold>
       <core-header-panel navigation flex mode="seamed">
@@ -33,7 +40,7 @@
             </paper-tab>
           </paper-tabs>
         </core-toolbar>
-        <core-menu>
+        <core-menu flex>
           <template if="{{mode == 0}}" repeat="{{deliveries}}">
              <core-submenu label="{{tw}}" icon="alarm">
                <template repeat="{{dels}}">
@@ -42,6 +49,9 @@
             </core-submenu>
           </template>
         </core-menu>
+        <core-toolbar class="bottom">
+          <div>toolbar</div>
+        </core-toolbar>
       </core-header-panel>
       <div tool>
         Supervision
