@@ -12,6 +12,17 @@
 <link href="../../bower_components/paper-dialog/paper-dialog.html" rel="import"/>
 <link href="../../bower_components/paper-dialog/paper-action-dialog.html" rel="import"/>
 <link href="../../bower_components/paper-button/paper-button.html" rel="import"/>
+<link href="../../font-roboto/roboto.html" rel="import"/>
+<link href="../../bower_components/paper-input/paper-autogrow-textarea.html" rel="import"/>
+<link href="../../bower_components/paper-input/paper-input-decorator.html" rel="import"/>
+<link href="../../bower_components/paper-input/paper-input.html" rel="import"/>
+<link href="../../bower_components/core-collapse/core-collapse.html" rel="import"/>
+<link href="../../bower_components/core-menu/core-menu.html" rel="import"/>
+<link href="../../bower_components/paper-dropdown/paper-dropdown.html" rel="import"/>
+<link href="../../bower_components/paper-item/paper-item.html" rel="import"/>
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html" rel="import"/>
+<link rel="import" href="../../bower_components/core-label/core-label.html">
 
 <polymer-element name="app-supervisor">
   <template>
@@ -66,12 +77,43 @@
             </template>
             <core-item icon="home" label="{{warehouse.name}}" style="color: blue"></core-item>
           </template>
+          <template if="{{mode == 2}}" repeat="{{drivers}}">
+            <core-item horizontal layout>
+              <paper-checkbox for></paper-checkbox>&nbsp;&nbsp;&nbsp; {{}}
+              <paper-icon-button icon="create"></paper-icon-button>
+            </core-item>
+          </template>
         </core-menu>
         <core-toolbar class="bottom">
           <template if="{{mode == 0}}">
             <paper-icon-button icon="add-circle-outline" on-tap="{{toggleNextDialog}}"></paper-icon-button>
             <paper-action-dialog heading="Add a new delivery">
-              <p>TODO</p>
+              <paper-input label="First name"></paper-input>
+              <paper-input label="Last name"></paper-input>
+              <paper-input-decorator label="Address" floatingLabel>
+                <paper-autogrow-textarea>
+                  <textarea></textarea>
+                </paper-autogrow-textarea>
+              </paper-input-decorator>
+              <paper-dropdown-menu label="Time window's start">
+                <paper-dropdown class="dropdown">
+                  <core-menu>
+                    <template repeat="{{times}}">
+                      <paper-item>{{}}</paper-item>
+                    </template>
+                  </core-menu>
+                </paper-dropdown>
+              </paper-dropdown-menu>
+              <paper-dropdown-menu label="Time window's end">
+                <paper-dropdown class="dropdown">
+                  <core-menu>
+                    <template repeat="{{times}}">
+                      <paper-item>{{}}</paper-item>
+                    </template>
+                  </core-menu>
+                </paper-dropdown>
+              </paper-dropdown-menu>
+              <paper-input label="Package ID"></paper-input>
               <paper-button affirmative>Cancel</paper-button>
               <paper-button affirmative autofocus>Add</paper-button>
             </paper-action-dialog>
@@ -85,7 +127,32 @@
 
             <paper-icon-button icon="create" on-tap="{{toggleNextDialog}}"></paper-icon-button>
             <paper-action-dialog heading="Change a delivery">
-              <p>TODO</p>
+              <paper-input label="First name" value="Modou"></paper-input>
+              <paper-input label="Last name" value="CISSE"></paper-input>
+              <paper-input-decorator label="Address" floatingLabel>
+                <paper-autogrow-textarea>
+                  <textarea>11 Avenue Bekar Al-Kountou, 38100 Dakar, Sénégal</textarea>
+                </paper-autogrow-textarea>
+              </paper-input-decorator>
+              <paper-dropdown-menu label="Time window's start">
+                <paper-dropdown>
+                  <core-menu>
+                    <template repeat="{{times}}">
+                      <paper-item>{{}}</paper-item>
+                    </template>
+                  </core-menu>
+                </paper-dropdown>
+              </paper-dropdown-menu>
+              <paper-dropdown-menu label="Time window's end">
+                <paper-dropdown>
+                  <core-menu>
+                    <template repeat="{{times}}">
+                      <paper-item>{{}}</paper-item>
+                    </template>
+                  </core-menu>
+                </paper-dropdown>
+              </paper-dropdown-menu>
+              <paper-input label="Package ID" value="XFKCTU"></paper-input>
               <paper-button affirmative>Cancel</paper-button>
               <paper-button affirmative autofocus>Change</paper-button>
             </paper-action-dialog>
@@ -98,7 +165,21 @@
             </paper-action-dialog>
           </template>
           <template if="{{mode == 1}}">
-            <paper-icon-button icon="send"></paper-icon-button>
+            <paper-icon-button icon="send" on-tap="{{toggleNextDialog}}"></paper-icon-button>
+            <paper-action-dialog heading="Send a roadmap">
+              <paper-dropdown-menu label="Driver">
+                <paper-dropdown>
+                  <core-menu>
+                    <template repeat="{{drivers}}">
+                      <paper-item>{{}}</paper-item>
+                    </template>
+                  </core-menu>
+                </paper-dropdown>
+              </paper-dropdown-menu>
+              <br/>
+              <paper-button affirmative>Cancel</paper-button>
+              <paper-button affirmative autofocus>Send</paper-button>
+            </paper-action-dialog>
           </template>
         </core-toolbar>
       </core-header-panel>
@@ -114,7 +195,7 @@
               </google-map-marker>
             </template>
           </template>
-          <template if="{{mode == 1}}">
+          <template if="{{mode != 0}}">
             <google-map-marker latitude="{{warehouse.lat}}" longitude="{{warehouse.long}}" icon="http://maps.google.com/mapfiles/ms/icons/blue-dot.png" title="{{warehouse.name}}">
               <p>{{warehouse.name}}</p>
             </google-map-marker>
@@ -145,6 +226,40 @@
           lat: "45.781582",
           long: "4.872940"
         },
+        times: [
+          "6:00",
+          "6:30",
+          "7:00",
+          "7:30",
+          "8:00",
+          "8:30",
+          "9:00",
+          "9:30",
+          "10:00",
+          "10:30",
+          "11:00",
+          "11:30",
+          "12:00",
+          "12:30",
+          "13:00",
+          "13:30",
+          "14:00",
+          "14:30",
+          "15:00",
+          "15:30",
+          "16:00",
+          "16:30",
+          "17:00",
+          "17:30",
+          "18:00",
+          "18:30",
+          "19:00",
+          "19:30",
+          "20:00",
+          "20:30",
+          "21:00"
+        ],
+        drivers: [ "Bob", "Bobby" ],
         deliveries: [
           {
             tw: "08:00 - 10:00",
