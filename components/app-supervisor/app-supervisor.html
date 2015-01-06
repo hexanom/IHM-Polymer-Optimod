@@ -6,13 +6,14 @@
 <link rel="import" href="../../bower_components/core-menu/core-submenu.html"/>
 <link rel="import" href="../../bower_components/core-item/core-item.html"/>
 <link rel="import" href="../../bower_components/core-icon/core-icon.html"/>
+<link rel="import" href="../../bower_components/core-icons/maps-icons.html"/>
 <link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html"/>
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html"/>
 <link rel="import"  href="../../bower_components/google-map/google-map.html"/>
 <link href="../../bower_components/paper-dialog/paper-dialog.html" rel="import"/>
 <link href="../../bower_components/paper-dialog/paper-action-dialog.html" rel="import"/>
 <link href="../../bower_components/paper-button/paper-button.html" rel="import"/>
-<link href="../../font-roboto/roboto.html" rel="import"/>
+<link href="../../bower_components/font-roboto/roboto.html" rel="import"/>
 <link href="../../bower_components/paper-input/paper-autogrow-textarea.html" rel="import"/>
 <link href="../../bower_components/paper-input/paper-input-decorator.html" rel="import"/>
 <link href="../../bower_components/paper-input/paper-input.html" rel="import"/>
@@ -44,10 +45,10 @@
           <paper-icon-button icon="arrow-back" onclick="window.location.href = './index.html'"></paper-icon-button>
           <paper-tabs selected="{{mode}}" fill>
             <paper-tab>
-              <core-icon icon="create"></core-icon>
+              <core-icon icon="maps:local-shipping"></core-icon>
             </paper-tab>
             <paper-tab>
-              <core-icon icon="toc"></core-icon>
+              <core-icon icon="maps:directions"></core-icon>
             </paper-tab> 
             <paper-tab>
               <core-icon icon="visibility"></core-icon>
@@ -58,7 +59,7 @@
           <template if="{{mode == 0}}" repeat="{{deliveries}}">
             <core-submenu label="{{tw}}" icon="alarm">
               <template repeat="{{dels}}">
-                <core-item icon="account-circle" label="{{name}}" selected="{{sel}}" style="color: {{color}}"></core-item>
+                <core-item icon="maps:place" label="{{name}}" selected="{{sel}}" style="color: {{color}}"></core-item>
               </template>
             </core-submenu>
           </template>
@@ -67,11 +68,11 @@
             <template repeat="{{deliveries}}">
               <template repeat="{{dels}}">
                 <template repeat="{{step in before}}">
-                  <core-item icon="trending-down" label="{{step}}"></core-item>
+                  <core-item icon="maps:traffic" label="{{step}}"></core-item>
                 </template>
-                <core-item icon="account-circle" label="{{name}}" selected="{{sel}}" style="color: {{lateColor}}"></core-item>
+                <core-item icon="maps:place" label="{{name}}" selected="{{sel}}" style="color: {{lateColor}}"></core-item>
                 <template repeat="{{step in after}}">
-                  <core-item icon="trending-down" label="{{step}}"></core-item>
+                  <core-item icon="maps:traffic" label="{{step}}"></core-item>
                 </template>
               </template>
             </template>
